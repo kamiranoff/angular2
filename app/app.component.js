@@ -1,5 +1,5 @@
 //Currently watching https://angular.io/docs/ts/latest/tutorial/toh-pt5.html
-System.register(['angular2/core', 'angular2/router', './heroes.component', './hero.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './hero.service', './heroes.component', './dashboard.component', './hero-detail.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,7 +11,7 @@ System.register(['angular2/core', 'angular2/router', './heroes.component', './he
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, heroes_component_1, hero_service_1;
+    var core_1, router_1, hero_service_1, heroes_component_1, dashboard_component_1, hero_detail_component_1;
     var AppComponent;
     return {
         setters:[
@@ -21,15 +21,22 @@ System.register(['angular2/core', 'angular2/router', './heroes.component', './he
             function (router_1_1) {
                 router_1 = router_1_1;
             },
+            function (hero_service_1_1) {
+                hero_service_1 = hero_service_1_1;
+            },
             function (heroes_component_1_1) {
                 heroes_component_1 = heroes_component_1_1;
             },
-            function (hero_service_1_1) {
-                hero_service_1 = hero_service_1_1;
+            function (dashboard_component_1_1) {
+                dashboard_component_1 = dashboard_component_1_1;
+            },
+            function (hero_detail_component_1_1) {
+                hero_detail_component_1 = hero_detail_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
+                    this.sectionTitle = 'HEROES OF ANGULAR 2';
                 }
                 AppComponent = __decorate([
                     router_1.RouteConfig([
@@ -37,11 +44,23 @@ System.register(['angular2/core', 'angular2/router', './heroes.component', './he
                             path: '/heroes',
                             name: 'Heroes',
                             component: heroes_component_1.HeroesComponent
+                        },
+                        {
+                            path: '/detail/:id',
+                            name: 'HeroDetail',
+                            component: hero_detail_component_1.HeroDetailComponent
+                        },
+                        {
+                            path: '/dashboard',
+                            name: 'Dashboard',
+                            component: dashboard_component_1.DashboardComponent,
+                            useAsDefault: true
                         }
                     ]),
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n  <h1>{{title}}</h1>\n  <a [routerLink]=\"['Heroes']\">Heroes</a>\n  <router-outlet></router-outlet>\n  ",
+                        template: "\n  <h1>{{sectionTitle}}</h1>\n  <nav>\n  <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n  <a [routerLink]=\"['Heroes']\">Heroes</a>\n  </nav>\n  <router-outlet></router-outlet>\n  ",
+                        styleUrls: ['app/app.component.css'],
                         directives: [router_1.ROUTER_DIRECTIVES],
                         providers: [
                             router_1.ROUTER_PROVIDERS,
