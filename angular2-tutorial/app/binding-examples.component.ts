@@ -24,7 +24,6 @@ import {Component} from 'angular2/core';
       Example Button with Binding
     </button>
     <div>
-    <p>Two-way data-binding example</p>
     <!--<input type="text" [value]="title" (input)="title = $event.target.value"/>-->
     <!--<input type="text" bindon-ngModel="title">-->
     <input type="text" [(ngModel)]="title">

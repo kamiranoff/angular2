@@ -21,15 +21,27 @@ System.register(['angular2/core'], function(exports_1, context_1) {
             StarComponent = (function () {
                 function StarComponent() {
                     this.isFavorite = false;
+                    this.change = new core_1.EventEmitter();
                 }
                 StarComponent.prototype.onClick = function () {
                     this.isFavorite = !this.isFavorite;
+                    this.change.emit({ newValue: this.isFavorite });
                 };
+                __decorate([
+                    core_1.Input('is-favorite'), 
+                    __metadata('design:type', Boolean)
+                ], StarComponent.prototype, "isFavorite", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], StarComponent.prototype, "change", void 0);
                 StarComponent = __decorate([
                     core_1.Component({
                         selector: 'star-component',
+                        //inputs:['isFavorite:is-favorite'], //Alternative of using decorators.
+                        //outputs:['change'], //Alternative of using decorators.
                         styles: ["\n    .glyphicon-star,.glyphicon-star-empty{\n      font-size:30px;\n      color:gold;\n    }\n  "],
-                        template: "\n    <i class=\"glyphicon\"\n     [class.glyphicon-star-empty]=\"!isFavorite\"\n     [class.glyphicon-star]=\"isFavorite\"\n     (click)=\"onClick()\"\n     ></i>\n  "
+                        templateUrl: 'app/star.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], StarComponent);

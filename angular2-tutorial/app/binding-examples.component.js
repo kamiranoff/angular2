@@ -36,7 +36,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     core_1.Component({
                         selector: 'binding-component',
                         styles: ["\n    .active{\n      background-color:#123;\n      color:#efefef;\n    }\n  "],
-                        template: "\n    <button type=\"button\"\n      [class.active]=\"isActive\"\n      (click)=\"onClick($event)\"\n      >\n      Example Button with Binding\n    </button>\n    <div>\n    <p>Two-way data-binding example</p>\n    <!--<input type=\"text\" [value]=\"title\" (input)=\"title = $event.target.value\"/>-->\n    <!--<input type=\"text\" bindon-ngModel=\"title\">-->\n    <input type=\"text\" [(ngModel)]=\"title\">\n    <p>Preview:{{title}}</p>\n    </div>\n  "
+                        template: "\n    <button type=\"button\"\n      [class.active]=\"isActive\"\n      (click)=\"onClick($event)\"\n      >\n      Example Button with Binding\n    </button>\n    <div>\n    <!--<input type=\"text\" [value]=\"title\" (input)=\"title = $event.target.value\"/>-->\n    <!--<input type=\"text\" bindon-ngModel=\"title\">-->\n    <input type=\"text\" [(ngModel)]=\"title\">\n    <p>Preview:{{title}}</p>\n    </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], BindingComponent);
