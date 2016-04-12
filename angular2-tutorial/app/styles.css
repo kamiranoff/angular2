@@ -1,0 +1,8 @@
+body{
+    padding:20px;
+    background-color: #f8f8f8;
+}
+
+.ng-touched.ng-invalid{
+    border:1px solid palevioletred;
+}

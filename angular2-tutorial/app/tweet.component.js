@@ -1,4 +1,4 @@
-System.register(['angular2/core', './like.component', './tweet.service', './tweet.class'], function(exports_1, context_1) {
+System.register(['angular2/core', './like.component', './tweet.service', './tweet.class', "./summary.pipe"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './like.component', './tweet.service', './twee
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, like_component_1, tweet_service_1, tweet_class_1;
+    var core_1, like_component_1, tweet_service_1, tweet_class_1, summary_pipe_1;
     var TweetComponent;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['angular2/core', './like.component', './tweet.service', './twee
             },
             function (tweet_class_1_1) {
                 tweet_class_1 = tweet_class_1_1;
+            },
+            function (summary_pipe_1_1) {
+                summary_pipe_1 = summary_pipe_1_1;
             }],
         execute: function() {
             TweetComponent = (function () {
@@ -37,7 +40,8 @@ System.register(['angular2/core', './like.component', './tweet.service', './twee
                         selector: 'tweets',
                         providers: [tweet_service_1.TweetService],
                         directives: [like_component_1.LikeComponent],
-                        template: "\n  <div class=\"media\" *ngFor=\"#tweet of tweets\">\n  <div class=\"media-left\">\n    <a href=\"#\">\n      <img class=\"media-object\" [src]=\"tweet.pic\" width=\"100\" height=\"100\">\n    </a>\n  </div>\n  <div class=\"media-body\">\n    <h4 class=\"media-heading\">{{tweet.name}} {{tweet.username}}</h4>\n    {{tweet.tweet}}\n    <like [likeCount]=\"tweet.likeCount\" [liked]=\"tweet.liked\"></like>\n  </div>\n</div>\n  "
+                        pipes: [summary_pipe_1.SummaryPipe],
+                        template: "\n  <h2>Tweet Component</h2>\n  <div class=\"media\" *ngFor=\"#tweet of tweets\">\n  <div class=\"media-left\">\n    <a href=\"#\">\n      <img class=\"media-object\" [src]=\"tweet.pic\" width=\"100\" height=\"100\">\n    </a>\n  </div>\n  <div class=\"media-body\">\n    <h4 class=\"media-heading\">{{tweet.name}} {{tweet.username}}</h4>\n    {{tweet.tweet | summary:25}}\n    <like [likeCount]=\"tweet.likeCount\" [liked]=\"tweet.liked\"></like>\n  </div>\n</div>\n  "
                     }), 
                     __metadata('design:paramtypes', [tweet_service_1.TweetService])
                 ], TweetComponent);

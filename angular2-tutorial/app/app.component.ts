@@ -1,11 +1,15 @@
 import {Component} from 'angular2/core';
-import {CoursesComponent} from './courses.component';
-import {AuthorsComponent} from './authors.component';
+
 import {BindingComponent} from './binding-examples.component';
 import {StarComponent} from './star.component';
 import {LikeComponent} from './like.component';
 import {VoteComponent} from './vote.component';
 import {TweetComponent} from './tweet.component';
+import {CoursesComponent} from './courses.component';
+import {AuthorsComponent} from './authors.component';
+import {CourseComponent} from "./course.component";
+import {ContactFormComponent} from "./contact-form.component";
+
 /**
 # Property binding : 3 possible syntaxes
 # <img src="{{imageUrl}}"/>
@@ -15,7 +19,8 @@ import {TweetComponent} from './tweet.component';
 
 @Component({
   selector: 'my-app',
-  directives:[CoursesComponent,AuthorsComponent,BindingComponent,StarComponent,LikeComponent,VoteComponent,TweetComponent],
+  directives:[CoursesComponent,AuthorsComponent,BindingComponent,StarComponent,
+    LikeComponent,VoteComponent,TweetComponent,CourseComponent,ContactFormComponent],
   styles:[`
     .active{
       background-color:#123;
@@ -32,7 +37,8 @@ import {TweetComponent} from './tweet.component';
     <tweets></tweets>
     <courses></courses>
     <authors></authors>
-
+    <course></course>
+    <contact-form></contact-form>
 
   `
 })

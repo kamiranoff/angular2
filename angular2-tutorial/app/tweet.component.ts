@@ -1,14 +1,17 @@
-///<reference path="tweet.service.ts"/>
+
 import {Component,Input,EventEmitter,Output} from 'angular2/core';
 import {LikeComponent} from './like.component';
 import {TweetService} from './tweet.service';
 import{Tweet} from './tweet.class';
+import {SummaryPipe} from "./summary.pipe";
 
 @Component({
   selector:'tweets',
   providers:[TweetService],
   directives:[LikeComponent],
+  pipes:[SummaryPipe],
   template:`
+  <h2>Tweet Component</h2>
   <div class="media" *ngFor="#tweet of tweets">
   <div class="media-left">
     <a href="#">
@@ -17,7 +20,7 @@ import{Tweet} from './tweet.class';
   </div>
   <div class="media-body">
     <h4 class="media-heading">{{tweet.name}} {{tweet.username}}</h4>
-    {{tweet.tweet}}
+    {{tweet.tweet | summary:25}}
     <like [likeCount]="tweet.likeCount" [liked]="tweet.liked"></like>
   </div>
 </div>
