@@ -4,7 +4,7 @@ import {ControlGroup,FormBuilder} from "angular2/common";
 @Component({
   selector:'search-component',
   template:`
-  <h2>Search Component</h2>
+  <h2>Search Component (with call to spotify Api)</h2>
   <form [ngFormModel]="searchForm">
     <input class="form-control" ngControl="search" id="search" type="text" placeholder="search">
   </form>

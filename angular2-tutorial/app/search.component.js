@@ -43,7 +43,7 @@ System.register(['angular2/core', "angular2/common"], function(exports_1, contex
                 SearchComponent = __decorate([
                     core_1.Component({
                         selector: 'search-component',
-                        template: "\n  <h2>Search Component</h2>\n  <form [ngFormModel]=\"searchForm\">\n    <input class=\"form-control\" ngControl=\"search\" id=\"search\" type=\"text\" placeholder=\"search\">\n  </form>\n  "
+                        template: "\n  <h2>Search Component (with call to spotify Api)</h2>\n  <form [ngFormModel]=\"searchForm\">\n    <input class=\"form-control\" ngControl=\"search\" id=\"search\" type=\"text\" placeholder=\"search\">\n  </form>\n  "
                     }), 
                     __metadata('design:paramtypes', [common_1.FormBuilder])
                 ], SearchComponent);

@@ -1,5 +1,6 @@
 export class Tweet{
 
+  id:number = 1;
   name:string =  'Jane Doe';
   username:string = '@JaneDoe';
   tweet:string = 'defaultTweet';
@@ -7,7 +8,8 @@ export class Tweet{
   liked:boolean = false;
   pic:string =  "http://loremflickr.com/g/100/100/shakira";
 
-  constructor(name:string, username:string, tweet:string, likeCount:number, liked:boolean, pic:string) {
+  constructor(id:number,name:string, username:string, tweet:string, likeCount:number, liked:boolean, pic:string) {
+    this.id = id;
     this.name = name;
     this.username = username;
     this.tweet = tweet;

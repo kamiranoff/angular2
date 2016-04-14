@@ -1,4 +1,4 @@
-System.register(['angular2/core', './like.component', './tweet.service', './tweet.class', "./summary.pipe"], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './like.component', './tweet.service', './tweet.class', "./summary.pipe"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,12 +10,15 @@ System.register(['angular2/core', './like.component', './tweet.service', './twee
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, like_component_1, tweet_service_1, tweet_class_1, summary_pipe_1;
+    var core_1, router_1, like_component_1, tweet_service_1, tweet_class_1, summary_pipe_1;
     var TweetComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (like_component_1_1) {
                 like_component_1 = like_component_1_1;
@@ -32,16 +35,16 @@ System.register(['angular2/core', './like.component', './tweet.service', './twee
         execute: function() {
             TweetComponent = (function () {
                 function TweetComponent(tweetService) {
-                    this.tweets = [new tweet_class_1.Tweet('Jane Doe', '@JaneDoe', 'defaultTweet', 10, false, "http://loremflickr.com/g/100/100/shakira")];
+                    this.tweets = [new tweet_class_1.Tweet(1, 'Jane Doe', '@JaneDoe', 'defaultTweet', 10, false, "http://loremflickr.com/g/100/100/shakira")];
                     this.tweets = tweetService.getTweets();
                 }
                 TweetComponent = __decorate([
                     core_1.Component({
                         selector: 'tweets',
                         providers: [tweet_service_1.TweetService],
-                        directives: [like_component_1.LikeComponent],
+                        directives: [like_component_1.LikeComponent, router_1.ROUTER_DIRECTIVES],
                         pipes: [summary_pipe_1.SummaryPipe],
-                        template: "\n  <h2>Tweet Component</h2>\n  <div class=\"media\" *ngFor=\"#tweet of tweets\">\n  <div class=\"media-left\">\n    <a href=\"#\">\n      <img class=\"media-object\" [src]=\"tweet.pic\" width=\"100\" height=\"100\">\n    </a>\n  </div>\n  <div class=\"media-body\">\n    <h4 class=\"media-heading\">{{tweet.name}} {{tweet.username}}</h4>\n    {{tweet.tweet | summary:25}}\n    <like [likeCount]=\"tweet.likeCount\" [liked]=\"tweet.liked\"></like>\n  </div>\n</div>\n  "
+                        template: "\n  <h2>Tweet Component</h2>\n  <div class=\"media\" *ngFor=\"#tweet of tweets\">\n    <div class=\"media-left\">\n      <a [routerLink]=\"['SingleTweet',{id:tweet.id}]\">\n        <img class=\"media-object\" [src]=\"tweet.pic\" width=\"100\" height=\"100\">\n      </a>\n    </div>\n    <div class=\"media-body\">\n      <h4 class=\"media-heading\">{{tweet.name}} {{tweet.username}}</h4>\n      {{tweet.tweet | summary:25}}\n      <like [likeCount]=\"tweet.likeCount\" [liked]=\"tweet.liked\"></like>\n    </div>\n  </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [tweet_service_1.TweetService])
                 ], TweetComponent);

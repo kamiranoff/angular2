@@ -6,3 +6,14 @@ body{
 .ng-touched.ng-invalid{
     border:1px solid palevioletred;
 }
+
+.navbar{
+    background-color:#456;
+
+}
+.navbar a,.navbar-default .navbar-brand,.navbar-default .navbar-nav > li > a{
+    color:#f8F8F8;
+}
+.navbar-default .navbar-toggle .icon-bar{
+    background-color:#f8F8F8;
+}

@@ -1,87 +1,38 @@
 import {Component} from 'angular2/core';
-
-import {BindingComponent} from './binding-examples.component';
-import {StarComponent} from './star.component';
-import {LikeComponent} from './like.component';
-import {VoteComponent} from './vote.component';
+import {RouteConfig,ROUTER_DIRECTIVES} from 'angular2/router';
 import {TweetComponent} from './tweet.component';
-import {CoursesComponent} from './courses.component';
-import {AuthorsComponent} from './authors.component';
-import {CourseComponent} from "./course.component";
-import {ContactFormComponent} from "./contact-form.component";
-import {ComplexForm} from "./complex-form.component";
-import {SearchComponent} from "./search.component";
-import {Observable} from "rxjs/Rx"; //full api
+import {MainPageComponent} from "./main-page.component";
+import {SingleTweetComponent} from "./single-tweet.component";
 
-//import {Observable} from "rxjs/Observable";//striped down
-
-import {SpotifyService} from "./spotify.service";
-
-
-
-/**
-# Property binding : 3 possible syntaxes
-# <img src="{{imageUrl}}"/>
-# <img [src]="imageUrl"/>
-# <img bind-src="imageUrl"/>
-**/
+@RouteConfig([
+  {
+    path: '/tweets',
+    name: 'Tweets',
+    component: TweetComponent,
+  },
+  {
+    path: '/tweet/:id',
+    name: 'SingleTweet',
+    component: SingleTweetComponent,
+  },
+  {
+    path: '/main-page',
+    name: 'MainPage',
+    component: MainPageComponent,
+    useAsDefault: true
+  },
+  {
+    path: '/*other',
+    name: 'Other',
+    redirectTo:['MainPage']
+  }
+])
 
 @Component({
   selector: 'my-app',
-  directives:[CoursesComponent,AuthorsComponent,BindingComponent,StarComponent,
-    LikeComponent,VoteComponent,TweetComponent,CourseComponent,ContactFormComponent,
-    ComplexForm,SearchComponent],
-  providers:[SpotifyService],
-  styles:[`
-    .active{
-      background-color:#123;
-      color:#efefef;
-    }
-  `],
-  template:`
-    <h1>{{post.title}}</h1>
-    <binding-component></binding-component>
-    <star-component [is-favorite]="post.isFavorite" (change)="onFavoriteChange($event)"></star-component>
-    <like [likeCount]="likeStatus.likeCount" [liked]="likeStatus.liked"></like>
-    <vote [voteCount]="votes.voteCount" [myVote]="votes.myVote" (vote)="onVoteChanged($event)"></vote>
-
-    <tweets></tweets>
-    <courses></courses>
-    <authors></authors>
-    <course></course>
-    <contact-form></contact-form>
-    <complex-form></complex-form>
-    <search-component (searchTerm)="onSearchChanged($event)"></search-component>
-  `
+  directives: [ROUTER_DIRECTIVES],
+  templateUrl: 'app/app.component.html'
 })
 export class AppComponent {
-  onSearchChanged(searchInput){
-   var keyups = Observable.of(searchInput)
-      .filter(text => text.length >= 3)
-      .debounceTime(400)
-      .distinctUntilChanged()
-      .flatMap(searchTerm => SpotifyService.searchArtists(searchTerm));
-    keyups.subscribe(data =>{console.log("data",data)});
-  }
-  post ={
-    title: 'My First Angular 2 App !',
-    isFavorite:true
-  };
-  onFavoriteChange($event){
-    console.log("change event",$event);
-  };
-
-  likeStatus={
-    likeCount:10,
-    liked:false
-  };
-  votes={
-    voteCount:243,
-    myVote:'neutral'
-  };
-
-  onVoteChanged($event){
-    console.log('has voted',$event);
-  }
 
 }

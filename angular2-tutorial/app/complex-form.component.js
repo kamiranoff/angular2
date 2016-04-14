@@ -1,4 +1,4 @@
-System.register(['angular2/core', "angular2/common", './usernameValidators'], function(exports_1, context_1) {
+System.register(['angular2/core', "angular2/common", './usernameValidators', "angular2/router"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', "angular2/common", './usernameValidators'], fu
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, usernameValidators_1;
+    var core_1, common_1, usernameValidators_1, router_1;
     var ComplexForm;
     return {
         setters:[
@@ -22,10 +22,14 @@ System.register(['angular2/core', "angular2/common", './usernameValidators'], fu
             },
             function (usernameValidators_1_1) {
                 usernameValidators_1 = usernameValidators_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             ComplexForm = (function () {
-                function ComplexForm(fb) {
+                function ComplexForm(fb, _router) {
+                    this._router = _router;
                     this.form = fb.group({
                         username: ['', common_1.Validators.compose([
                                 common_1.Validators.required,
@@ -40,17 +44,18 @@ System.register(['angular2/core', "angular2/common", './usernameValidators'], fu
                 //});
                 ComplexForm.prototype.signup = function () {
                     //var result = authService.login(this.form.value);
-                    this.form.find('username').setErrors({
-                        invalidLogin: true
-                    });
+                    //this.form.find('username').setErrors({
+                    //  invalidLogin:true
+                    //});
                     console.log('this.form.value', this.form.value);
+                    this._router.navigate(['Tweets']);
                 };
                 ComplexForm = __decorate([
                     core_1.Component({
                         selector: 'complex-form',
                         templateUrl: 'app/complex-form.component.html'
                     }), 
-                    __metadata('design:paramtypes', [common_1.FormBuilder])
+                    __metadata('design:paramtypes', [common_1.FormBuilder, router_1.Router])
                 ], ComplexForm);
                 return ComplexForm;
             }());
