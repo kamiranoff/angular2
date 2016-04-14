@@ -7,7 +7,5 @@ import {Component} from 'angular2/core';
 })
 
 export class ContactFormComponent{
-  log(input){
-    console.log(input);
-  }
+
 }

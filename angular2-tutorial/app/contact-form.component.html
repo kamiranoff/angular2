@@ -1,5 +1,5 @@
 <h2>Contact Form with Validation</h2>
-<form>
+<form #f="ngForm">
   <div class="form-group">
     <label for="firstname">First name</label>
     <input id="firstname"
@@ -10,7 +10,8 @@
            required
            minlength="3">
     <div class="alert alert-danger"
-         *ngIf="firstName.touched && firstName.errors?.required">First Name is required.
+         *ngIf="firstName.touched && firstName.errors?.required">
+      First Name is required.
     </div>
     <div class="alert alert-danger"
          *ngIf="firstName.touched && firstName.errors?.minlength">
@@ -32,5 +33,5 @@
       Comment is required
     </div>
   </div>
-  <button class="btn btn-primary" type="submit">Submit</button>
+  <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
 </form>

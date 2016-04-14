@@ -9,6 +9,15 @@ import {CoursesComponent} from './courses.component';
 import {AuthorsComponent} from './authors.component';
 import {CourseComponent} from "./course.component";
 import {ContactFormComponent} from "./contact-form.component";
+import {ComplexForm} from "./complex-form.component";
+import {SearchComponent} from "./search.component";
+import {Observable} from "rxjs/Rx"; //full api
+
+//import {Observable} from "rxjs/Observable";//striped down
+
+import {SpotifyService} from "./spotify.service";
+
+
 
 /**
 # Property binding : 3 possible syntaxes
@@ -20,7 +29,9 @@ import {ContactFormComponent} from "./contact-form.component";
 @Component({
   selector: 'my-app',
   directives:[CoursesComponent,AuthorsComponent,BindingComponent,StarComponent,
-    LikeComponent,VoteComponent,TweetComponent,CourseComponent,ContactFormComponent],
+    LikeComponent,VoteComponent,TweetComponent,CourseComponent,ContactFormComponent,
+    ComplexForm,SearchComponent],
+  providers:[SpotifyService],
   styles:[`
     .active{
       background-color:#123;
@@ -39,10 +50,19 @@ import {ContactFormComponent} from "./contact-form.component";
     <authors></authors>
     <course></course>
     <contact-form></contact-form>
-
+    <complex-form></complex-form>
+    <search-component (searchTerm)="onSearchChanged($event)"></search-component>
   `
 })
 export class AppComponent {
+  onSearchChanged(searchInput){
+   var keyups = Observable.of(searchInput)
+      .filter(text => text.length >= 3)
+      .debounceTime(400)
+      .distinctUntilChanged()
+      .flatMap(searchTerm => SpotifyService.searchArtists(searchTerm));
+    keyups.subscribe(data =>{console.log("data",data)});
+  }
   post ={
     title: 'My First Angular 2 App !',
     isFavorite:true
